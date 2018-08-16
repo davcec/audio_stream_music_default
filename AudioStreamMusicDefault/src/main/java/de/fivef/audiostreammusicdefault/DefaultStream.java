@@ -17,7 +17,6 @@
  */
 package de.fivef.audiostreammusicdefault;
 
-import android.content.Context;
 import android.content.res.XResources;
 import android.media.AudioManager;
 import android.os.Build;
@@ -84,9 +83,6 @@ public class DefaultStream implements IXposedHookZygoteInit {
 
                     boolean isInCommunication = (Boolean) XposedHelpers.callMethod(param.thisObject, "isInCommunication");
                     if (isInCommunication) return;
-
-                    boolean isVolumeFixed = Context.getSystemService(AudioManager.class).isVolumeFixed();
-                    if (isVolumeFixed) return;
 
                     int suggestedStreamType = (Integer) param.args[0];
                     if (suggestedStreamType != AudioManager.USE_DEFAULT_STREAM_TYPE) return;
